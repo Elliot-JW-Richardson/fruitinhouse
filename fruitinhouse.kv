@@ -1,0 +1,53 @@
+<PrimaryScreen>:
+    MDGridLayout:
+        cols: 2
+        id: primary_1
+        MDFloatLayout:
+            size_hint_x: 0.8
+            padding:5
+            id: game_area
+            Image:
+                id: image
+                source: root.image_locations['island']['source']
+                size: self.size
+                allow_stretch: True
+
+        MDGridLayout:
+            size_hint_x: 0.2
+            cols: 1
+            padding: 10
+            spacing: 10
+            id: primary_2
+            MDRaisedButton:
+                text: 'Transition'
+                on_release: root.change_screen()
+            MDRaisedButton:
+                id: 1
+                my_id: 'island'
+                text: 'Island'
+                on_release: root.play_sound(), root.map_change(self)
+            MDRaisedButton:
+                id: 2
+                my_id: 'mansion'
+                text: 'Mansion'
+                on_release: root.play_sound(), root.map_change(self)
+
+<SecondaryScreen>:
+    MDGridLayout:
+        cols: 1
+        id: second_1
+        MDGridLayout:
+            cols: 2
+            id: second_2
+            MDLabel:
+                text: "Secondary Screen"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 1, 0, 1
+            MDGridLayout:
+                cols: 2
+                MDRaisedButton:
+                    text: 'Transition'
+                    on_release:
+                        root.manager.transition.direction = 'right'
+                        root.manager.current = 'primary'
